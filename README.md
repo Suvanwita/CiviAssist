@@ -21,7 +21,7 @@ It uses **FAISS-based semantic search** to retrieve the most relevant standards 
 ## 📂 Project Structure
 
 ```id="struct2"
-BIS-RAG/
+CiviAssist/
 │
 ├── data/
 │   └── bis_standards.json
@@ -205,7 +205,7 @@ http://localhost:8501
 MIT License
 
 ---
-
+ 
 # 💼 Author
 
 CiviAssist is built to simplify IS code discovery using AI-driven semantic search for civil engineering applications.
