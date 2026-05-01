@@ -7,7 +7,6 @@ suggestions = [
     "Concrete mix design IS code",
     "Standard for reinforced concrete",
     "IS code for steel reinforcement",
-    "Aggregates standard in construction"
 ]
 
 st.set_page_config(page_title="BIS Recommendation Engine")
@@ -18,7 +17,18 @@ st.write("Enter a product description to find relevant BIS standards")
 if "query" not in st.session_state:
     st.session_state.query = ""
 
-st.sidebar.title("💡 Suggested Queries")
+if "history" not in st.session_state:
+    st.session_state.history = []
+
+if st.session_state.query:
+    if st.session_state.query in st.session_state.history:
+        st.session_state.history.remove(st.session_state.query)
+
+    st.session_state.history.insert(0, st.session_state.query)
+
+    st.session_state.history = st.session_state.history[:10]
+
+st.sidebar.header("💡 Suggested Queries")
 for i in range(0, len(suggestions), 2):
     col1, col2 = st.sidebar.columns(2)
     
@@ -31,6 +41,17 @@ for i in range(0, len(suggestions), 2):
         if col2.button(suggestions[i + 1]):
             st.session_state.query = suggestions[i + 1]
             st.rerun()
+
+st.sidebar.markdown("---")
+st.sidebar.header("🕘 Recent Queries")
+
+if st.session_state.history:
+    for past_query in st.session_state.history:
+        if st.sidebar.button(past_query, key=f"history_{past_query}"):
+            st.session_state.query = past_query
+            st.rerun()
+else:
+    st.sidebar.write("No recent queries yet.")
 
 query = st.text_input("🔍 Product Description", value=st.session_state.query)
 
