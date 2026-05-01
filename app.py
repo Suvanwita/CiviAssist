@@ -2,6 +2,7 @@ import streamlit as st
 from rag_engine import get_recommendations
 import time
 import pandas as pd
+import matplotlib.pyplot as plt
 
 suggestions = [
     "IS code for cement",
@@ -62,6 +63,17 @@ if st.button("Get Recommendations"):
             time.sleep(1)
             retrieved, answer = get_recommendations(query)
 
+        category_counts = {}
+
+        for doc in retrieved[:5]:
+            cat = doc.get("category", "unknown")
+            category_counts[cat] = category_counts.get(cat, 0) + 1
+
+        cat_df = pd.DataFrame(
+            list(category_counts.items()),
+            columns=["Category", "Count"]
+        )
+
         st.subheader("📌 Top Matches")
         for doc in retrieved[:5]:
             st.write(f"**{doc['id']} - {doc['title']}**")
@@ -94,4 +106,13 @@ if st.button("Get Recommendations"):
 
         st.markdown("---")
 
-        
+        fig, ax = plt.subplots()
+        ax.pie(
+            cat_df["Count"],
+            labels=cat_df["Category"],
+            autopct="%1.1f%%"
+        )
+
+        st.subheader("📊 Category Breakdown")
+        st.pyplot(fig)
+
