@@ -72,6 +72,8 @@ if st.button("Get Recommendations"):
         st.subheader("🤖 AI Explanation")
         st.write(answer)
 
+        st.markdown("---")
+
         st.subheader("📌 Insights")
 
         col1, col2, col3 = st.columns(3)
@@ -79,3 +81,17 @@ if st.button("Get Recommendations"):
         col1.metric("Top Score", f"{retrieved[0]['score']:.2f}")
         col2.metric("Results Found", len(retrieved))
         col3.metric("Top Category", retrieved[0].get("category", "N/A"))
+
+        st.markdown("---")
+
+        chart_data = pd.DataFrame([
+            {"IS Code": doc["id"], "Score": doc["score"]}
+            for doc in retrieved[:5]
+        ])
+
+        st.subheader("📊 Similarity Score Comparison")
+        st.bar_chart(chart_data.set_index("IS Code"))
+
+        st.markdown("---")
+
+        
