@@ -1,6 +1,7 @@
 import streamlit as st
 from rag_engine import get_recommendations
 import time
+import pandas as pd
 
 suggestions = [
     "IS code for cement",
@@ -70,3 +71,11 @@ if st.button("Get Recommendations"):
 
         st.subheader("🤖 AI Explanation")
         st.write(answer)
+
+        st.subheader("📌 Insights")
+
+        col1, col2, col3 = st.columns(3)
+
+        col1.metric("Top Score", f"{retrieved[0]['score']:.2f}")
+        col2.metric("Results Found", len(retrieved))
+        col3.metric("Top Category", retrieved[0].get("category", "N/A"))
