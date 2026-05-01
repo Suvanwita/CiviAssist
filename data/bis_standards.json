@@ -1,0 +1,37 @@
+[
+  {
+    "id": "IS 269",
+    "title": "Ordinary Portland Cement",
+    "scope": "Covers OPC used in general construction.",
+    "keywords": ["cement", "opc", "construction", "binding material"],
+    "category": "cement"
+  },
+  {
+    "id": "IS 456",
+    "title": "Plain and Reinforced Concrete",
+    "scope": "Code of practice for structural concrete.",
+    "keywords": ["concrete", "reinforced", "structure"],
+    "category": "concrete"
+  },
+  {
+    "id": "IS 10262",
+    "title": "Concrete Mix Design",
+    "scope": "Guidelines for proportioning concrete mix.",
+    "keywords": ["mix design", "concrete", "proportion"],
+    "category": "concrete"
+  },
+  {
+    "id": "IS 1786",
+    "title": "High Strength Deformed Steel Bars",
+    "scope": "Specifications for reinforcement bars.",
+    "keywords": ["steel", "tmt", "reinforcement"],
+    "category": "steel"
+  },
+  {
+    "id": "IS 383",
+    "title": "Coarse and Fine Aggregates",
+    "scope": "Specifications for aggregates in construction.",
+    "keywords": ["aggregates", "sand", "gravel"],
+    "category": "aggregates"
+  }
+]
