@@ -1,5 +1,6 @@
 import streamlit as st
 from rag_engine import get_recommendations
+import time
 
 suggestions = [
     "IS code for cement",
@@ -35,7 +36,9 @@ query = st.text_input("🔍 Product Description", value=st.session_state.query)
 
 if st.button("Get Recommendations"):
     if query:
-        retrieved, answer = get_recommendations(query)
+        with st.spinner("⚡ Analyzing query and retrieving standards..."):
+            time.sleep(1)
+            retrieved, answer = get_recommendations(query)
 
         st.subheader("📌 Top Matches")
         for doc in retrieved[:5]:
